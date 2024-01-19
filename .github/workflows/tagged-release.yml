@@ -32,7 +32,7 @@ jobs:
       - uses: "softprops/action-gh-release@v1"
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
-          tag_name: "${GITHUB_REF_NAME#v}"
+          tag_name: "${{  github.ref_name }}"
           prerelease: false
           files: package/*
 
@@ -72,7 +72,7 @@ jobs:
 
       - name: "Push files for current tag version"
         run: |
-          git clone git@github.com:OpenCS-ontology/OpenCS-ontology.github.io.git
+          git clone git@github.com:jakfol1217/OpenCS-ontology.github.io.git
           cp -a tag/. OpenCS-ontology.github.io/$TAG_PATH
           cp -a stable/. OpenCS-ontology.github.io/releases/stable/
           cp -a versions/. OpenCS-ontology.github.io/releases/versions/ 
